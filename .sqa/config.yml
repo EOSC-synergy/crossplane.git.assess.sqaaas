@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/crossplane/crossplane:
+      branch: main
+      repo: https://github.com/crossplane/crossplane.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/crossplane/crossplane git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-chestnut-fowl.sh
+        container: qc.acc_stinky-celadon-orangutan
+  QC.Doc:
+    repos:
+      github.com/crossplane/crossplane find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-asparagus-mandrill.sh
+        container: qc.doc_seedy-periwinkle-nightingale
+      github.com/crossplane/crossplane git:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-seashell-tetra.sh
+        container: qc.doc_stinky-charcoal-dachsbracke
+      github.com/crossplane/crossplane markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-fuchsia-chimpanzee.sh
+        container: qc.doc_leaky-indigo-raccoon
+  QC.Lic:
+    repos:
+      github.com/crossplane/crossplane licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-sapphire-whippet.sh
+        container: qc.lic_frumpy-black-gorilla
+  QC.Sec:
+    repos:
+      github.com/crossplane/crossplane gosec:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-cerise-mouse.sh
+        container: qc.sec_sickly-seashell-goose
+  QC.Sty:
+    repos:
+      github.com/crossplane/crossplane jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-magnolia-caterpillar.sh
+        container: qc.sty_greasy-rose-zonkey
+      github.com/crossplane/crossplane staticcheck:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-platinum-horse.sh
+        container: qc.sty_shabby-tangerine-woodpecker
+  QC.Ver:
+    repos:
+      github.com/crossplane/crossplane get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-lime-foxhound.sh
+        container: qc.ver_tacky-cinnamon-birman
+timeout: 5400
